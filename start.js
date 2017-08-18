@@ -6,7 +6,7 @@ var env = process.env
 var config = {
     userJson: 'user.json',
     questionJson: 'question.json',
-    saveInterval: 3 * 60 * 1000
+    saveInterval: 60 * 60 * 1000
 }
 
 var database = new MixDatabase(
