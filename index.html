@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      form > input, form > label {
+      display: block;
+      }
+      iframe {
+      width: 50%;
+      height: 10em;
+      display: block;
+      float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe name="ajax-result"></iframe>
+    
+    <form id="regist-user" method="POST"
+	  target="ajax-result" action="/user.json">
+      <h2>regist</h2>
+      <label>username: <input name="user" type="text"></label>
+      <input type="submit">
+    </form>
+
+    <form id="answer-question" method="POST"
+	  target="ajax-result" action="/answer.json">
+      <h2>answer</h2>
+      <label>username:
+	<input name="user" type="text">
+      </label>
+      <label>answer:
+	<input name="answer" min="0" max="3" type="number">
+      </label>
+      <input name="id" min="0" type="number">
+      <input type="submit">
+    </form>
+
+    <form id="get-question" method="GET"
+	  target="ajax-result" action="/question.json">
+      <h2>get question</h2>
+      <label>username:
+	<input name="user" type="text">
+      </label>
+      <input type="submit">
+    </form>
+  </body>
+</html>
