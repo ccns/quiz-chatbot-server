@@ -1,40 +1,29 @@
-const cluster = require('cluster'),
-      stopSignals = [
-        'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-        'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-      ],
-      production = process.env.NODE_ENV == 'production';
+var http = require('http')
+var DatabaseResponse = require('./lib/response').DatabaseResponse
+var MixDatabase = require('./lib/file-interface').MixDatabase
+var env = process.env
 
-let stopping = false;
-
-cluster.on('disconnect', function(worker) {
-  if (production) {
-    if (!stopping) {
-      cluster.fork();
-    }
-  } else {
-    process.exit(1);
-  }
-});
-
-if (cluster.isMaster) {
-  const workerCount = process.env.NODE_CLUSTER_WORKERS || 4;
-  console.log(`Starting ${workerCount} workers...`);
-  for (let i = 0; i < workerCount; i++) {
-    cluster.fork();
-  }
-  if (production) {
-    stopSignals.forEach(function (signal) {
-      process.on(signal, function () {
-        console.log(`Got ${signal}, stopping workers...`);
-        stopping = true;
-        cluster.disconnect(function () {
-          console.log('All workers stopped, exiting.');
-          process.exit(0);
-        });
-      });
-    });
-  }
-} else {
-  require('./app.js');
+var config = {
+    userJson: 'user.json',
+    questionJson: 'question.json',
+    saveInterval: 3 * 60 * 1000
 }
+
+var database = new MixDatabase(
+    config.userJson,
+    config.questionJson,
+    config.saveInterval
+)
+DatabaseResponse.setDatabase(database)
+
+database.init().then(function () {
+    var server = http.createServer(function onRequest(request, response) {
+	var dbResponse = new DatabaseResponse(request, response)
+	dbResponse.execute()
+    })
+    server.listen(
+	env.NODE_PORT || 3000,
+	env.NODE_IP || 'localhost'
+    )
+})
+
