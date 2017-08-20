@@ -2,12 +2,13 @@
 var assert = require('assert')
 var database = require('../lib/database')
 
-void function testQuestion() {
-    var Question = database.Question
-    var question = new Question(
-	'problem', ['a','b','c','d'], 3, 0, '2017-08-17', 'gholk', 'test', 'ok'
-    )
+var Question = database.Question
+var question = new Question(
+    'problem', ['a','b','c','d'], 3, 0, '2017-08-17', 'gholk', 'test', 'ok'
+)
 
+
+void function testQuestion() {
     assert.deepEqual(question, {
 	question: 'problem',
 	option: ['a', 'b', 'c', 'd'],
@@ -23,12 +24,12 @@ void function testQuestion() {
     for (var i=0; i<3; i++) assert.equal(question.verify(i), false)
 }()
 
-void function testUser() {
-    var User = database.User
-    var name = 'gholk'
-    var length = 100
-    var user = new User(name, length)
+var User = database.User
+var name = 'gholk'
+var length = 100
+var user = new User(name, length)
 
+void function testUser() {
     assert.deepEqual(user, {
 	name: name,
 	questionStatus: new Array(length).fill(0),
@@ -45,4 +46,33 @@ void function testUser() {
 	user.questionStatus,
 	new Array(length).fill(0).map((x, i) => (i%2) + 1)
     )
+}()
+
+var db = new database.Database()
+
+void function testDatabase() {
+    assert.ok(db.questionBase instanceof Array)
+    assert.ok(db.userBase instanceof Map)
+
+    assert.equal(db.log.name, 'bound ')
+    assert.equal(db.error.name, 'bound ')
+
+    assert.ok(db.getUser(name) == undefined)
+    var dbUser = db.addUser(name)
+    assert.ok(dbUser instanceof User)
+    assert.ok(dbUser.name == name)
+    assert.ok(db.getUser(name) == dbUser)
+    assert.throws(
+	() => db.addUser(name),
+	(userError) => /exist/.test(userError.message)
+    )
+
+    assert.ok(db.getQuestion(0) == undefined)
+    db.addQuestion(
+	'problem', ['a','b','c','d'], 3,
+	'2017-08-17', 'gholk', 'test', 'ok'
+    )
+    var dbQuestion = db.getQuestion(0)
+    assert.deepEqual(dbQuestion, question)
+    assert.ok(db.answer(name, 0, 3))
 }()
