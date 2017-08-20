@@ -4,8 +4,8 @@ var MixDatabase = require('./lib/file-interface').MixDatabase
 var env = process.env
 
 var config = {
-    userJson: 'user.json',
-    questionJson: 'question.json',
+    userJson: 'user-database.json',
+    questionJson: 'question-database.json',
     saveInterval: 60 * 60 * 1000
 }
 
