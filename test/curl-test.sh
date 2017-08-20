@@ -15,12 +15,11 @@ post_quizbe() {
     curl -d "$data" $url/$file
 }
 
-get_quizbe question.json
 get_quizbe question.json id=8
 get_quizbe question.json user=gholk
 get_quizbe question.json user=gholk
 
 post_quizbe user.json user=gholk
-post_quizbe user.json user=test-1
+post_quizbe user.json user=test-8
 post_quizbe answer.json 'user=test-1&id=8&answer=0'
 post_quizbe answer.json 'user=gholk&id=8&answer=0'
