@@ -14,11 +14,13 @@ function print_key_value(key, value) {
 }
 
 function print_array(option_array) {
-    print "["
+    array_string = ""
     for (option in option_array) {
-        print double_quote(option_array[option]) ","
+        array_string = \
+            array_string double_quote(option_array[option]) ","
     }
-    print "]"
+    sub(",$", "", array_string)
+    print "[" array_string "]"
 }
 
 function abcd_to_0123(character) {
