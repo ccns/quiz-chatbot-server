@@ -78,7 +78,12 @@ GET /user.json?user=gholk
 否則回傳錯誤碼
 ```
 POST /user.json
-{"user": "root"} // POST 這份 json
+// POST 這份 json
+{
+    "user": "root",
+    "nickname": "rt" // 非必要欄位
+}
+
 // 回傳建立的使用者資訊，和上面查詢的格式相同。
 ```
 
@@ -98,6 +103,7 @@ POST /answer.json
 {
   "user": "root",
   "id": 12,
+  "nickname": "rt", // 可能沒有這欄
   "answer": 0
 }
 ```
