@@ -1,7 +1,5 @@
 #!/bin/sh
 
-node start.js &
-sleep 3s
 
 url=localhost:3000
 get_quizbe() {
