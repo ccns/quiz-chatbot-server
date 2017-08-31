@@ -60,9 +60,10 @@ GET /question.json?user=root
   - order 為排名。
 
 ```
-GET /user.json?user=gholk
+GET /user.json?user=0012345
 {
-  "name": "gholk",
+  "name": "0012345",
+  "nickname": "gholk", // 可能沒有這欄
   "questionStatus": [
     1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
@@ -110,7 +111,7 @@ POST /answer.json
 
 
 ## 匯入匯出資料庫
-*上線後此 api 會關閉*
+*上線後 post api 會關閉*
 
 資料庫有 `/user-database.json` 及 `/question-database.json` 兩個，
 沒有參數，可以接受 get 或 post，
@@ -125,6 +126,7 @@ GET /user-database.json
 {
   "318294440": {
     "name": "318294440",
+    "nickname": "dijkstra", // 可能沒有這欄
     "questionStatus": [
       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -132,8 +134,8 @@ GET /user-database.json
     ],
     "point": 0
   },
-    "gholk": {
-    "name": "gholk",
+    "0012345": {
+    "nickname": "gholk", // 可能沒有這欄
     "questionStatus": [
       1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
       1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1,
