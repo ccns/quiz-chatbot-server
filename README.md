@@ -4,6 +4,8 @@
   - 方法：POST, GET
   - 路徑： /answer.json, /user.json, /question.json，
     **副檔名 `.json` 可省。**
+  - CORS：允許跨網域請求，但 POST json 不許允，
+    因為 w3c 的規定簡單請求僅允許 POST x-www-form-urlencode。
 
 ## 格式
 只有 querystring 是用 querystring 編碼，
