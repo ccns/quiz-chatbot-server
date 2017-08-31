@@ -60,6 +60,7 @@ GET /question.json?user=root
      1. 答錯
      2. 答對
   - order 為排名。
+  - total 為使用者總人數。
 
 ```
 GET /user.json?user=0012345
@@ -72,7 +73,8 @@ GET /user.json?user=0012345
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
   ], 
   "point": 7,
-  "order": 4
+  "order": 4,
+  "total": 18
 }
 ```
 
