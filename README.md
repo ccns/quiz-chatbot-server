@@ -66,7 +66,8 @@ GET /question.json?user=root
 GET /user.json?user=0012345
 {
   "name": "0012345",
-  "nickname": "gholk", // 可能沒有這欄
+  "platform": "telegram", // 這欄可能沒有
+  "nickname": "gholk", // 這欄可能也沒有
   "questionStatus": [
     1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
@@ -86,6 +87,7 @@ POST /user.json
 // POST 這份 json
 {
     "user": "root",
+    "platform": "telegram", // 非必要欄位
     "nickname": "rt" // 非必要欄位
 }
 
@@ -109,6 +111,7 @@ POST /answer.json
   "user": "root",
   "id": 12,
   "nickname": "rt", // 可能沒有這欄
+  "platform": "telegram", // 可能沒有這欄
   "answer": 0
 }
 ```
@@ -131,6 +134,7 @@ GET /user-database.json
   "318294440": {
     "name": "318294440",
     "nickname": "dijkstra", // 可能沒有這欄
+    "platform": "telegram", // 可能沒有這欄
     "questionStatus": [
       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -140,6 +144,7 @@ GET /user-database.json
   },
     "0012345": {
     "nickname": "gholk", // 可能沒有這欄
+    "platform": "telegram", // 可能沒有這欄
     "questionStatus": [
       1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
       1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1,
