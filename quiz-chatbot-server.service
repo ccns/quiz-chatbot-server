@@ -10,7 +10,7 @@ Restart=always
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=quiz chatbot database server
-Environment=NODE_ENV=production
+Environment=NODE_ENV=production NODE_PORT=3314 NODE_IP=140.116.252.156
 
 [Install]
 WantedBy=quiz-chatbot.target
