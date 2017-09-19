@@ -6,3 +6,4 @@
 [Unit]
 Description=Quiz chatbot collection
 Requires=multi-user.target network.target
+After=network.target multi-user.target
