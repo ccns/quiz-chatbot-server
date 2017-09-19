@@ -5,6 +5,11 @@ quiz_server=localhost:3000
 node start.js &
 sleep 3s
 
+get() {
+    url="$1"
+    curl "$url"
+}
+
 post_querystring() {
     querystring="$1"
     url="$2"
@@ -18,5 +23,6 @@ post_json() {
 }
 
 post_json question-database.json $quiz_server/question-database.json
-
-post_querystring 'user=1000&nickname=gholk&platform=curl' $quiz_server/user.json
+post_querystring \
+    'user=1000&nickname=gholk&platform=curl' \
+    $quiz_server/user.json

@@ -1,0 +1,8 @@
+# create by gholk 2017-09-19
+# manage quiz chatbot by systemctl
+# include `quiz-chatbot-discord.service`
+# `quiz-chatbot-server`
+
+[Unit]
+Description=Quiz chatbot collection
+Requires=multi-user.target network.target

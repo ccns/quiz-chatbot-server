@@ -1,0 +1,16 @@
+[Unit]
+Description=CCNS QA chatbot backend server
+
+[Service]
+ExecStart=/usr/bin/node /opt/quiz-chatbot/server/start.js
+WorkingDirectory=/opt/quiz-chatbot/server
+Restart=always
+    RestartSec=30
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=quiz chatbot database server
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=quiz-chatbot.target
